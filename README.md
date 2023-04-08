@@ -134,8 +134,16 @@
 
 <p align="center"><img src="https://res.cloudinary.com/da6h8op5l/image/upload/v1680924384/assets/client-trang-dat-hang_ay9tyb.png" width="500px"/></p>
 <p align="center">Hình 2.4: Trang mua hàng</p>
-
-
+<h3>2. Kiến thức áp dụng</h3>
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>Javascript</li>
+  <li>ReactJS</li>
+  <li>Spring Boot</li>
+  <li>MySQL</li>
+  <li>JDBC</li>
+</ul>
 
 
 
