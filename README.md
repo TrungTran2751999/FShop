@@ -1,4 +1,4 @@
-<h1>TRANG WEB BÁN MÁY THỰC PHẨM FSHOP<h1>
+<h1>TRANG WEB BÁN THIẾT BỊ THỰC PHẨM FSHOP<h1>
 <h2>1. Mô tả</h2>
 - Trang web bán thiết bị thực phẩm bao gồm 2 thành phần chính: Quản trị và Client.
 
