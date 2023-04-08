@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @Setter
 @Getter
+@Accessors(chain = true)
 public class ProductMediaDTO {
     private String id;
     private String cloudId;

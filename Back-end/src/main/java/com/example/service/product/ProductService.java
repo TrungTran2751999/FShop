@@ -2,10 +2,12 @@ package com.example.service.product;
 
 import com.example.exception.DataInputException;
 import com.example.exception.ResourceNotFoundException;
+import com.example.model.Category;
 import com.example.model.Product;
 import com.example.model.ProductMedia;
 import com.example.model.dto.ProductCreateDTO;
 import com.example.model.dto.ProductDTO;
+import com.example.model.dto.ProductMediaDTO;
 import com.example.repository.ProductMediaRepository;
 import com.example.repository.ProductRepository;
 import com.example.service.productMedia.ProductMediaService;
@@ -18,10 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class ProductService implements IProductService{
@@ -124,6 +125,20 @@ public class ProductService implements IProductService{
         }
     }
 
+    @Override
+    public List<ProductMediaDTO> findAllByCategoryId(Category categoryId) {
+        List<Product> listProduct = productRepository.findAllByCategoryId(categoryId);
+        List<ProductMediaDTO> listProductMediaDTO = new ArrayList<>();
+        for(int i=0; i<listProduct.size(); i++){
+            ProductMedia productMedia = productMediaRepository.findByProduct(listProduct.get(i));
+            ProductMediaDTO productMediaDTO = new ProductMediaDTO();
+            productMediaDTO.setFileUrl(productMedia.getFileUrl());
+            productMediaDTO.setProduct(listProduct.get(i).toProductDTO());
+            listProductMediaDTO.add(productMediaDTO);
+        }
+        return listProductMediaDTO;
+    }
+
     private void uploadAndSaveImage(ProductCreateDTO productCreateDTO, ProductMedia productMedia){
         try {
             Map uploadResult = uploadService.uploadImage(productCreateDTO.getMultipartFile(), uploadUtil.buildImageUploadParams(productMedia));
@@ -139,4 +154,5 @@ public class ProductService implements IProductService{
             throw new DataInputException("Image upload failed !!!");
         }
     }
+
 }

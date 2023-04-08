@@ -17,7 +17,7 @@ function Category(){
             setCategory(categoryRes.data);
         }
         init();
-    },[products])
+    },[id])
     return (
         <body>
         <>

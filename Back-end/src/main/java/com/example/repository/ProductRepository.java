@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.model.Category;
 import com.example.model.Product;
 import com.example.model.dto.ProductDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,4 +26,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "p.quantity,"+
             "p.description"+") FROM Product AS p")
     List<ProductDTO> findAllProductDTO();
+    List<Product> findAllByCategoryId(Category category);
 }

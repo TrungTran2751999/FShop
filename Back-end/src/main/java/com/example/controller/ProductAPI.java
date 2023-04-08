@@ -7,6 +7,7 @@ import com.example.model.Product;
 import com.example.model.dto.ProductCreateDTO;
 import com.example.model.dto.ProductDTO;
 import com.example.model.dto.ProductMediaDTO;
+import com.example.repository.CategoryRepository;
 import com.example.repository.ProductRepository;
 import com.example.service.category.ICategoryService;
 import com.example.service.product.IProductService;
@@ -38,6 +39,8 @@ public class ProductAPI {
     private AppUtil appUtil;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("")
     private ResponseEntity<?> findAllProduct(){
@@ -117,6 +120,21 @@ public class ProductAPI {
             }
         }catch (Exception e){
             return new ResponseEntity<>("This product not exist !!!", HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/category/{id}")
+    private ResponseEntity<?> getProductByCategory(@PathVariable("id") String categoryId){
+        try{
+            long id = Long.parseLong(categoryId);
+            Optional<Category> categoryOpt = categoryRepository.findById(id);
+            if(categoryOpt.isPresent()){
+                List<ProductMediaDTO> listProductDTO = productService.findAllByCategoryId(categoryOpt.get());
+                return new ResponseEntity<>(listProductDTO, HttpStatus.OK);
+            }else{
+                throw new DataInputException("Category not found");
+            }
+        }catch (Exception e){
+            throw new DataInputException("Category not found");
         }
     }
 }
