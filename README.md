@@ -66,5 +66,7 @@
 <p align="center"><img src="https://res.cloudinary.com/da6h8op5l/image/upload/v1680924385/assets/quan-ly-gio-hang_ljwysp.png" width="500px"/></p>
 <p align="center">Hình 1.6: Trang hiển thị lịch sử mua hàng</p>
 
+2.Tr
+
 
 
